@@ -1,0 +1,110 @@
+-- Main
+local Main = loadstring(game:HttpGet("https://sirius.menu/gen2"))()
+local Window = Main:CreateWindow({
+    name = "Thapex Client | V1",
+    subtitle = "discord.gg/9kgHvh8ub",
+    theme = "default"
+})
+
+-- HomeTab
+local HomeTab = Window:CreateTab({ name = "Home", icon = 93364949241311 })
+
+-- Cam Section
+local CamSection = HomeTab:CreateSection({ name = "Camera"})
+
+HomeTab:CreateSlider({
+    name = "Field of view",
+    range = { 50, 120 },
+    increment = 1,
+    value = 90,
+    suffix = "°",
+    callback = function(value)
+        workspace.CurrentCamera.FieldOfView = value
+    end,
+})
+
+HomeTab:CreateButton({
+    name = "Reset View",
+    callback = function()
+        workspace.CurrentCamera.FieldOfView = 90
+    end,
+})
+
+-- Home Section
+local MovementSection = HomeTab:CreateSection({ name = "Movement"})
+
+local Jump = HomeTab:CreateToggle({
+    name = "Infinity Jump",
+    flag = "InfinityJump",
+    value = false,
+    callback = function(value)
+        if value == true then
+            game:GetService("UserInputService").JumpRequest:Connect(function()
+            local character = game:GetService("Players").LocalPlayer.Character
+            local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid:ChangeState("Jumping")
+            end
+        end)
+        end
+    end,
+})
+Jump:Set(false)
+
+
+local Fly = HomeTab:CreateToggle({
+    name = "Fly",
+    flag = "fly",
+    value = true,
+    callback = function(value)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/RadeonScripts/Universal/refs/heads/main/FlyScript"))()
+    end,
+})
+Fly:Set(false)
+
+
+
+-- ThemesTab
+local ThemesTab = Window:CreateTab({ name = "Themes", nil })
+
+ThemesTab:CreateButton({
+    name = "Dark",
+    callback = function()
+        Window:ChangeTheme("default")
+    end,
+})
+
+ThemesTab:CreateButton({
+    name = "Cobalt",
+    callback = function()
+        Window:ChangeTheme("cobalt")
+    end,
+})
+
+ThemesTab:CreateButton({
+    name = "Ember",
+    callback = function()
+        Window:ChangeTheme("ember")
+    end,
+})
+
+ThemesTab:CreateButton({
+    name = "Amethyst",
+    callback = function()
+        Window:ChangeTheme("amethyst")
+    end,
+})
+
+ThemesTab:CreateButton({
+    name = "Frost",
+    callback = function()
+        Window:ChangeTheme("frost")
+    end,
+})
+
+ThemesTab:CreateButton({
+    name = "Rose",
+    callback = function()
+        Window:ChangeTheme("rose")
+    end,
+})
